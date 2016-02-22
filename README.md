@@ -6,7 +6,7 @@ If you'll remember from the talk, we got no sequence back for the HA and NA gene
 
 ### Phylogenetically placing the Balinese H3N2 PB2 sequences
 
-1. Download all files by clicking on the "Download ZIP" button at the top right
+1. Download all files by clicking on the `Download ZIP` button at the top right
 
   The Balinese sequences can be found in the `Bali-sequences` folder as `Bali-MEI.H3N2.PB2.fas`
 
@@ -48,8 +48,33 @@ If you'll remember from the talk, we got no sequence back for the HA and NA gene
 
   You'll see that they're all aligned nicely for you, as we selected `Coding Region` in the download menu. These should also align nicely with our Bali sequences.
 
-7. Combine the IVR sequences with the Bali sequences in `AliView` by going to the `Edit` menu, then `Add sequences from file`. Select the Balinese sequences.
+  We also want to download an outgroup sequence that we can use to orient our phylogenetic tree. To do this we are going to pick the vaccine strain from 2011.
 
-  You'll see that the Balinese sequences are missing the 3' end of their gene segment compared to the rest of the sequences.
+  We can see this by going to http://www.nextflu.org/H3N2/6y/ and hovering over the bold X.
 
-8.
+  You'll see the 2011 H3N2 vaccine strain was `A/Victoria/361/2011`
+
+7. Go to GenBank http://www.ncbi.nlm.nih.gov/genbank/ and download the PB2 segment of this vaccine strain.
+
+  If you're unable to download it, you can find a pre-downloaded file called `A_Victoria_361_2011.fas` in the folder `outgroup`
+
+  We now want to combine the 3 files we have into one alignment:
+  ```
+  A_Victoria_361_2011
+  IVR-sequences.fa
+  Bali-MEI.H3N2.PB2.fas
+  ```
+
+8. Open any one of these files in `AliView` then append the others by going to the `Edit` menu and selecting `Add sequences from file`. Add the other 2 files.
+
+  You'll see that the sequences are not all aligned with respect to each other.
+
+9. Automatically align the sequences by going to `Align` and selecting `Realign everything`. This may take a few minutes.
+
+  Once it's finished, close the dialog box. You'll see that they are all nicely aligned but that the outgroup sequence has extra sequence beyond the coding region.
+
+10. Remove the extra non-coding sequence by highlighting the columns in `AliView` and going to `Edit` then `Delete selected`.
+
+11. Save this combined file by going to `File` then `Save as FASTA`.
+
+  If you were unable to create the aligned and trimmed file, a pre-prepared file called `combined.H3N2.PB2.fas` is in the folder `combined`.
