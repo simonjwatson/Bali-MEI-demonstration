@@ -41,4 +41,4 @@ I would **strongly** recommend that you familiarise yourself with working on the
 
   It should look like the following:
 
-  [QUASR QC](img/QUASR.png)
+  ![QUASR QC](img/QUASR.png?raw=true)
