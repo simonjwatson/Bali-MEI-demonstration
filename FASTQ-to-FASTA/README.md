@@ -6,7 +6,7 @@ Here we'll go through the steps taken to quality control reads that have been ge
 
 These steps require you to run commands in a UNIX-based operating system, for example a Mac OS or Linux. For this practical I will assume you are using a Mac OS.
 
-I would **strongly** recommend that you familiarise yourself with working on the command-line by following the `Learn the Command Line` course at CodeCademy: https://www.codecademy.com/learn/learn-the-command-line
+I would **strongly** recommend that you familiarise yourself with working on the command-line by following the `Learn the Command Line` course at Codecademy: https://www.codecademy.com/learn/learn-the-command-line
 
 1. Download the necessary files to follow this demonstration by clicking on the `Download ZIP` file at the top right of the main page.
 
@@ -18,7 +18,7 @@ I would **strongly** recommend that you familiarise yourself with working on the
 
   In here you'll see a folder containing the NGS reads in a compressed FASTQ file. There are 2 files: `83_S1_L001_R1_001.fastq.gz` contains the forward reads while `83_S1_L001_R1_001.fastq.gz` contains the reverse reads of this paired-end run.
 
-4. Check a read of one of the files by displaying the first 4l ines of the file:
+4. Check a read by displaying the first 4 lines of the file:
 
   `gunzip -c 83_S1_L001_R1_001.fastq.gz | head -4`
 
@@ -32,3 +32,13 @@ I would **strongly** recommend that you familiarise yourself with working on the
   ```
 
   The first line contains the unique read header, the second line is the sequence. The `+` marks the end of the sequence and the beginning of the quality scores for each base in the sequence.
+
+  The first thing we will do is to quality control the reads. This involves trimming the reads from their 3' end until the average quality score of the read is above some value, and removing non-biological sequences such as Illumina adapters and PCR primer sequences. To do this, I have included the jar file for QUASR:
+
+5. Run QUASR's `readsetProcessor.jar` without any arguments, which prints to the screen a list of its options:
+
+  `java -jar programs/QUASR_v7.03/readsetProcessor.jar`
+
+  It should look like the following:
+
+  ![QUASR QC](simonjwatson.github.com/Bali-MEI-demonstration/FASTQ-to-FASTA/img/QUASR.png)
