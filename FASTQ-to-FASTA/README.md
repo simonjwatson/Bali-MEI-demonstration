@@ -41,4 +41,4 @@ I would **strongly** recommend that you familiarise yourself with working on the
 
   It should look like the following:
 
-  ![QUASR QC](simonjwatson.github.com/Bali-MEI-demonstration/FASTQ-to-FASTA/img/QUASR.png)
+  ![QUASR QC](https://github.com/simonjwatson/Bali-MEI-demonstration/tree/master/FASTQ-to-FASTA/img/QUASR.png)
