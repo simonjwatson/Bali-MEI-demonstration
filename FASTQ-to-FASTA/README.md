@@ -14,13 +14,13 @@ I would **strongly** recommend that you familiarise yourself with working on the
 
 3. Move to the folder you downloaded in step 1:
 
-  `cd /Downloads/Bali-MEI-demonstration/FASTQ-to-FASTA/`
+  `cd /Downloads/Bali-MEI-demonstration-master/FASTQ-to-FASTA/`
 
-  In here you'll see a folder containing the NGS reads in a compressed FASTQ file. There are 2 files: `83_S1_L001_R1_001.fastq.gz` contains the forward reads while `83_S1_L001_R1_001.fastq.gz` contains the reverse reads of this paired-end run.
+  In here you'll see a folder containing the NGS reads in a compressed FASTQ file. There are 2 files: `FASTQ-files/83_S1_L001_R1_001.fastq.gz` contains the forward reads while `FASTQ-files/83_S1_L001_R1_001.fastq.gz` contains the reverse reads of this paired-end run.
 
 4. Check a read by displaying the first 4 lines of the file:
 
-  `gunzip -c 83_S1_L001_R1_001.fastq.gz | head -4`
+  `gunzip -c FASTQ-files/83_S1_L001_R1_001.fastq.gz | head -4`
 
   You should see the following:
 
@@ -42,3 +42,13 @@ I would **strongly** recommend that you familiarise yourself with working on the
   It should look like the following:
 
   ![QUASR QC](img/QUASR.png?raw=true)
+
+  We're going to quality control the reads by trimming the 3' of reads until the median quality score of the read is greater than 30.0. If this results in a read shorter than 120 nucleotides, then we're going to throw the read away. As this was a paired-end run, and many genome assemblers require matching forward and reverse reads in each file, if either read fails, both the forward and reverse reads are thrown away.
+
+6. Run QUASR with the following settings:
+
+  `java -jar programs/QUASR_v7.03/readsetProcessor.jar -i FASTQ-files/83_S1_L001_R1_001.fastq.gz -r FASTQ-files/83_S1_L001_R2_001.fastq.gz  -q -l 120 -m 30.0 -o quality-control/Bali-MEI`
+
+  This will create 2 FASTQ files in the `quality-control` folder called `Bali-MEI.qc.f.fq` and `Bali-MEI.qc.r.fq`, containing the forward and reverse quality-controlled reads respectively. You will see that 4.25% of the reads were discarded because they failed quality-control, leaving us with 300993 read pairs.
+
+  Now we want to map these reads against a reference to assemble a genome.
