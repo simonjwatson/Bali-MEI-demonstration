@@ -43,7 +43,7 @@ I would **strongly** recommend that you familiarise yourself with working on the
 
   ![QUASR QC](img/QUASR.png?raw=true)
 
-  We're going to quality control the reads by trimming the 3' of reads until the median quality score of the read is greater than 30.0. If this results in a read shorter than 120 nucleotides, then we're going to throw the read away. As this was a paired-end run, and many genome assemblers require matching forward and reverse reads in each file, if either read fails, both the forward and reverse reads are thrown away.
+  We're going to quality control the reads by trimming the 3' of each read until the median quality score of the read is greater than 30.0. If this results in a read shorter than 120 nucleotides, then we're going to throw the read away. As this was a paired-end run, and many genome assemblers require matching forward and reverse reads in each file, if either read fails, both the forward and reverse reads are thrown away.
 
 6. Run QUASR with the following settings:
 
@@ -51,4 +51,4 @@ I would **strongly** recommend that you familiarise yourself with working on the
 
   This will create 2 FASTQ files in the `quality-control` folder called `Bali-MEI.qc.f.fq` and `Bali-MEI.qc.r.fq`, containing the forward and reverse quality-controlled reads respectively. You will see that 4.25% of the reads were discarded because they failed quality-control, leaving us with 300993 read pairs.
 
-  Now we want to map these reads against a reference to assemble a genome.
+  Now we want to map these reads against a reference to assemble a genome. To do this, we're going to use a program called SMALT (http://www.sanger.ac.uk/science/tools/smalt-0). 
