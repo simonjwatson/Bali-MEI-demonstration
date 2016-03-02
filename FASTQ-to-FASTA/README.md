@@ -51,4 +51,26 @@ I would **strongly** recommend that you familiarise yourself with working on the
 
   This will create 2 FASTQ files in the `quality-control` folder called `Bali-MEI.qc.f.fq` and `Bali-MEI.qc.r.fq`, containing the forward and reverse quality-controlled reads respectively. You will see that 4.25% of the reads were discarded because they failed quality-control, leaving us with 300993 read pairs.
 
-  Now we want to map these reads against a reference to assemble a genome. To do this, we're going to use a program called SMALT (http://www.sanger.ac.uk/science/tools/smalt-0). 
+  Now we want to map these reads against a reference to assemble a genome. To do this, we're going to use a program called SMALT (http://www.sanger.ac.uk/science/tools/smalt-0).
+
+7. SMALT version 0.7.6 has been included in the `programs` folder. To run the script, type:
+
+  `programs/smalt-0.7.6/src/smalt`
+
+  if it gives an error message then you need to re-compile the code by typing:
+
+  ```
+  cd programs/SMALT-0.7.6/
+  ./configure
+  make
+  make install
+  cd ../..
+  ```
+
+  Mapping reads to a reference with SMALT takes 2 steps. 1) Create an index of the reference sequence 2) Map the reads against this index. We will perform these 2 steps:
+
+8. We need to create an index of our reference genome. As we know the sample is an influenza A H3N2 subtype, a relevant H3N2 reference genome has been downloaded and included in the `reference` folder as `reference.H3N2.fasta`. We will first create the hash index of this reference with the following command:
+
+  `smalt index -k 14 -s 8 reference/reference.H3N2 reference/reference.H3N2.fasta`
+
+  This creates the hash index of the genome by breaking down the genome into 14-nucleotide "words" (kmers), each word 8 nucleotides apart. The index files will be created as `reference.H3N2.smi` and `reference.H3N2.sma` in the `reference` folder.
